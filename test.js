@@ -10,7 +10,12 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost:27017/textAnalyzer', {
+const dbUrl = process.env.mongoUrl;
+
+mongoose.connect(
+  // 'mongodb://localhost:27017/textAnalyzer'
+  dbUrl,
+{
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
