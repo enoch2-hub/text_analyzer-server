@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const natural = require('natural');
+const syllable = require('syllables');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -35,11 +36,6 @@ mongoose.connect(
 const TextAnalysis = require('./models/TextAnalysis');
 
 
-app.use((req, res, next) => {
-  res.sendFile(path.resolve(__dirname, 'Public', 'index.html'))
-})
-
-
 
 // Text analysis logic
 app.post('/analyze', async (req, res) => {
@@ -51,7 +47,8 @@ app.post('/analyze', async (req, res) => {
   const sentences = text.split(/[.!?]+/).filter(Boolean);
 
   // Count syllables using natural library
-  const syllables = words.reduce((acc, word) => acc + natural.syllables(word), 0);
+  // const syllables = words.reduce((acc, word) => acc + natural.syllables(word), 0);
+  const syllables = words.reduce((acc, word) => acc + syllable(word), 0);
 
   const analysisResult = {
     charactersWithSpaces: text.length,
@@ -59,7 +56,6 @@ app.post('/analyze', async (req, res) => {
     wordsCount: words.length,
     sentencesCount: sentences.length,
     syllablesCount: syllables,
-    // Add other analysis results as needed
   };
 
   // Save analysis result to MongoDB
@@ -72,6 +68,12 @@ app.post('/analyze', async (req, res) => {
 
   res.json({ analysisResult });
 });
+
+
+app.use((req, res, next) => {
+  res.sendFile(path.resolve(__dirname, 'Public', 'index.html'))
+})
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

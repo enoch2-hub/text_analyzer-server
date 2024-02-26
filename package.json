@@ -19,6 +19,7 @@
     "mongoose": "^8.2.0",
     "natural": "^6.10.4",
     "path": "^0.12.7",
-    "syllable": "^5.0.1"
+    "syllable": "^5.0.1",
+    "syllables": "^1.0.0"
   }
 }

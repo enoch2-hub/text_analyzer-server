@@ -8,3 +8,7 @@ const textAnalysisSchema = new mongoose.Schema({
 const TextAnalysis = mongoose.model('TextAnalysis', textAnalysisSchema);
 
 module.exports = TextAnalysis;
+
+
+
+
