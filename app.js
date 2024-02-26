@@ -13,7 +13,12 @@ const syllable = require('syllables');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://text-analyzer-k1uj.onrender.com/',
+  credentials: true
+}
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'Public')));
 
