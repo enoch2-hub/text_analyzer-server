@@ -68,9 +68,15 @@ app.post('/analyze', async (req, res) => {
 });
 
 
+app.get('/analyze', (req,res) => {
+  res.json({message: 'Hello World'})
+})
+
+
 app.use((req, res, next) => {
   res.sendFile(path.resolve(__dirname, 'Public', 'index.html'))
 })
+
 
 
 app.listen(PORT, () => {
