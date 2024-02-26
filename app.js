@@ -22,10 +22,7 @@ const dbUrl = process.env.mongoUrl;
 
 mongoose.connect(
   // 'mongodb://localhost:27017/textAnalyzer'
-  dbUrl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+  dbUrl)
 .then(() => {
   console.log('MongoDB connected');
 })
