@@ -67,6 +67,10 @@ app.post('/analyze', async (req, res) => {
   res.json({ analysisResult });
 });
 
+app.post('/analyze2', (req,res) => {
+  const { text } = req.body;
+  res.json({thisIsYourText: text})
+})
 
 app.get('/analyze', (req,res) => {
   res.json({message: 'Hello World'})
